@@ -1,8 +1,34 @@
+//참조: 주교재
 #include <iostream>
 #include <string>
+#include <cstdlib>
 using namespace std;
+#define MAX_QUEUE_SIZE 100
+typedef char element;
+typedef struct
+{
+	element data[MAX_QUEUE_SIZE];
+	char front, rear;
+} DequeType;
+
+//초기화
+void init_deque(DequeType *q)
+{
+	q->front = q->rear = NULL;
+}
+
+void add_rear(DequeType *q, element item)
+{
+	q->rear = (q->rear + 1) % MAX_QUEUE_SIZE;
+	q->data[q->rear - 1] = item;
+}
+
 int main()
 {
+	DequeType queue;
+
+	init_deque(&queue);
+
 	char str[100] = {};			//문자를 담는 배열
 	char checkStr[100] = {};	//회문인지 확인할 때 쓰이는 문자의 배열
 	int length = 0;				//문자열의 길이
@@ -17,7 +43,7 @@ int main()
 
 	cout << "입력 받은 문자열: " << str << endl;
 
-	for(int i = 0; i < length; i++)
+	for(int i = 0; i <= length; i++)
 	{
 		if(str[i] >= 65 && str[i] <= 90)
 		{
@@ -33,10 +59,13 @@ int main()
 
 	checkLength = strlen(checkStr);
 
+	for(int i = 0; i < checkLength; i++)
+		add_rear(&queue, checkStr[i]);
+
 	//Check isPalindrome
 	for (int i = 0; i < checkLength; i++)
 	{
-		if (checkStr[i] != checkStr[checkLength - 1 - i])
+		if (queue.data[i] != queue.data[checkLength - 1 - i])
 		{
 			isPalindrome = false;
 			break;
