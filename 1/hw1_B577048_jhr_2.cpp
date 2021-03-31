@@ -5,27 +5,24 @@
 using namespace std;
 #define MAX_PLAYER_SIZE 10
 #define MAX_NAME_SIZE 10
-typedef void* element;
+typedef char element;
 
 typedef struct QueueType
 {
-    element *buf;
-    int qsize, front, rear, cnt;
+    element data[MAX_PLAYER_SIZE][MAX_NAME_SIZE];
+    char* front, rear;
 } QueueType;
 
 void init_queue(QueueType *q, int size)
 {
-    q->buf = (element *)malloc(sizeof(QueueType));
-    q->qsize = qsize;
-    q->front = q->rear = 0;
-    q->cnt = 0;
+    q->front = q->rear = NULL;
 }
 
 //삽입 함수
 void enqueue(QueueType *q, element item)
 {
-    q->buf[q->rear] = item;
-    q->rear = q->front = NULL;
+    q->rear = (q->rear + 1) % MAX_PLAYER_SIZE;
+    q->data[q->rear - 1] = item;
 }
 
 //삭제 함수
