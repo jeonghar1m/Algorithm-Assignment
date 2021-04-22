@@ -155,39 +155,48 @@ int main(void)
     clock_t st, et;
 
     // Bubble sort
+	for (i = 0; i<MAX_SIZE; i++)      
+		list[i] = rand() % 100000;  
     st = clock();
 	bubble_sort(list, MAX_SIZE); 
     et = clock();
     printf("Bubble sort 수행시간: %d clocks (1sec = %d clocks)\n", et - st, CLOCKS_PER_SEC);
 
+    // Selection sort
 	for (i = 0; i<MAX_SIZE; i++)      
 		list[i] = rand() % 100000;     
-
-    // Selection sort
     st = clock();
     selection_sort(list, MAX_SIZE);
     et = clock();
     printf("Selection sort 수행시간: %d clocks (1sec = %d clocks)\n", et - st, CLOCKS_PER_SEC);
 
     // Insertion sort
+	for (i = 0; i<MAX_SIZE; i++)      
+		list[i] = rand() % 100000; 
     st = clock();
 	insertion_sort(list, MAX_SIZE); 
     et = clock();
     printf("Insertion sort 수행시간: %d clocks (1sec = %d clocks)\n", et - st, CLOCKS_PER_SEC);
 
     // Shell sort
+	for (i = 0; i<MAX_SIZE; i++)      
+		list[i] = rand() % 100000; 
     st = clock();         
 	shell_sort(list, MAX_SIZE); 
 	et = clock();
     printf("Shell sort 수행시간: %d clocks (1sec = %d clocks)\n", et - st, CLOCKS_PER_SEC);
 
     // Merge sort
+	for (i = 0; i<MAX_SIZE; i++)      
+		list[i] = rand() % 100000; 
     st = clock();       
 	merge_sort(list, 0, MAX_SIZE-1); 
     et = clock();
 	printf("Merge sort 수행시간: %d clocks (1sec = %d clocks)\n", et - st, CLOCKS_PER_SEC);
 
     // Quicksort
+	for (i = 0; i<MAX_SIZE; i++)      
+		list[i] = rand() % 100000; 
     st = clock();       
 	quicksort(list, 0, MAX_SIZE-1); 
     et = clock();
