@@ -1,4 +1,5 @@
 //Reference: https://ehpub.co.kr/tag/clocks_per_sec/
+//문제 6번의 1번
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
