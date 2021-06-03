@@ -74,9 +74,9 @@ void shortest_path(GraphType* g, int start)
 	}
 	found[start] = TRUE;    // Source vertex is visted
 	distance[start] = 0;    // Distance of source vertex is zero
+	adjancyList[0] = start;	// 인접리스트 배열의 0번째 index에 시작 정점을 대입한다.
 
 	for (i = 0; i<g->n-1; i++) {
-		adjancyList[0] = start;
 		print_status(g);
 		u = choose(distance, g->n, found);
 		found[u] = TRUE;
