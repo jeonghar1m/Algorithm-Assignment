@@ -6,7 +6,13 @@
 #define TRUE 1
 #define FALSE 0
 #define MAX_VERTICES 100	
-#define INF	1000000	
+#define INF	1000000
+
+typedef struct GraphNode
+{
+	int vertex;
+	struct GraphNode* link;
+} GraphNode;
 
 typedef struct GraphType {
 	int n;	// number of vertices in the graph
@@ -15,6 +21,7 @@ typedef struct GraphType {
 
 int distance[MAX_VERTICES];     // The shortest path so far from source
 int found[MAX_VERTICES];		// To indicate the visited vertex (Set S)
+int adjancyList[MAX_VERTICES];
 
 // Choose the index of the smallest element in the array distance[]							
 int choose(int distance[], int n, int found[])
@@ -45,6 +52,11 @@ void print_status(GraphType* g)
 	printf("        found:    ");
 	for (int i = 0; i<g->n; i++)
 		printf("%2d ", found[i]);
+	printf("\n");
+	printf("Adjancy List: ");
+	for(int i = 0; i< g->n ;i++)
+		if(adjancyList[i] != -1)
+			printf("%2d ->", adjancyList[i]);
 	printf("\n\n");
 
 	return;
@@ -58,11 +70,13 @@ void shortest_path(GraphType* g, int start)
 	{
 		distance[i] = g->weight[start][i];
 		found[i] = FALSE;
+		adjancyList[i] = -1;
 	}
 	found[start] = TRUE;    // Source vertex is visted
 	distance[start] = 0;    // Distance of source vertex is zero
 
 	for (i = 0; i<g->n-1; i++) {
+		adjancyList[0] = start;
 		print_status(g);
 		u = choose(distance, g->n, found);
 		found[u] = TRUE;
@@ -70,6 +84,7 @@ void shortest_path(GraphType* g, int start)
 			if (!found[w])
 				if (distance[u] + g->weight[u][w]<distance[w])
 					distance[w] = distance[u] + g->weight[u][w];
+		adjancyList[i + 1] = u;
 	}
 
 	return;
