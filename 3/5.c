@@ -1,9 +1,9 @@
+// Reference: 수업시간에 사용한 소스코드
 #include <stdio.h>
 #include <stdlib.h>
 
 #define TRUE 1
 #define FALSE 0
-// Reference: 수업시간에 사용한 소스코드
 #define MAX_VERTICES 100	
 #define INF	1000000		// Infinity; No connection between two vertices
 
